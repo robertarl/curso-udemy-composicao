@@ -1,4 +1,4 @@
 # Curso Java Udemy - Composição
 
 
-Exercícios referente ao assunto de composição com Java.
+Exercício referente ao assunto de composição com Java.
