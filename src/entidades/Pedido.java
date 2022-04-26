@@ -1,65 +1,65 @@
-package model.entities;
+package entidades;
 
-import model.enums.OrderStatus;
+import enums.StatusPedidos;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class Pedido {
 
     private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    private Date moment;
-    private OrderStatus status;
-    private Client client;
+    private Date momento;
+    private StatusPedidos status;
+    private Cliente cliente;
 
-    private List<OrderItem> items = new ArrayList<OrderItem>();
+    private List<ItensPedidos> items = new ArrayList<ItensPedidos>();
 
-    public Order(Date moment, OrderStatus status, Client client) {
-        this.moment = moment;
+    public Pedido(Date momento, StatusPedidos status, Cliente cliente) {
+        this.momento = momento;
         this.status = status;
-        this.client = client;
+        this.cliente = cliente;
     }
 
-    public void addItem(OrderItem item){
+    public void addItem(ItensPedidos item){
         items.add(item);
     }
-    public void removeItem(OrderItem item){
+    public void removeItem(ItensPedidos item){
         items.remove(item);
     }
 
     public double total(){
         double total = 0.0;
-        for(OrderItem item : items){
+        for(ItensPedidos item : items){
             total += item.subTotal();
         }
         return total;
     }
 
-    public Date getMoment() {
-        return moment;
+    public Date getMomento() {
+        return momento;
     }
 
-    public void setMoment(Date moment) {
-        this.moment = moment;
+    public void setMomento(Date momento) {
+        this.momento = momento;
     }
 
-    public OrderStatus getStatus() {
+    public StatusPedidos getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatus status) {
+    public void setStatus(StatusPedidos status) {
         this.status = status;
     }
 
-    public Client getClient() {
-        return client;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -67,16 +67,16 @@ public class Order {
         sb.append("Resumo do pedido: \n");
 
         sb.append("Momento do pedido: ");
-        sb.append(sdf.format(moment) + "\n");
+        sb.append(sdf.format(momento) + "\n");
 
         sb.append("Status do pedido: ");
         sb.append(status + "\n");
 
         sb.append("Cliente: ");
-        sb.append(client + "\n");
+        sb.append(cliente + "\n");
 
         sb.append("Items do pedido: \n");
-        for (OrderItem item : items) {
+        for (ItensPedidos item : items) {
             sb.append(item + "\n");
         }
 

@@ -1,17 +1,19 @@
-package application;
+package aplicacao;
 
-import model.entities.Client;
-import model.entities.Order;
-import model.entities.OrderItem;
-import model.entities.Product;
-import model.enums.OrderStatus;
+
+import entidades.Cliente;
+import entidades.Pedido;
+import entidades.ItensPedidos;
+import entidades.Produtos;
+import enums.StatusPedidos;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class OrderProgram {
+public class Compras {
 
     public static void main(String[] args) throws ParseException {
 
@@ -22,23 +24,23 @@ public class OrderProgram {
 
         System.out.println("Digite os dados do cliente: ");
         System.out.print("Nome: ");
-        String name = sc.nextLine();
+        String nome = sc.nextLine();
 
         System.out.print("Email: ");
         String email = sc.nextLine();
 
         System.out.print("Data de nascimento (DD/MM/YYYY): ");
-        Date birthDate = sdf.parse(sc.next());
+        Date dataNascimento = sdf.parse(sc.next());
 
-        Client client = new Client(name, email, birthDate);
+        Cliente cliente = new Cliente(nome, email, dataNascimento);
 
 
         System.out.println("Digite os dados do pedido: ");
 
         System.out.print("Status: ");
-        OrderStatus status = OrderStatus.valueOf(sc.next());
+        StatusPedidos status = StatusPedidos.valueOf(sc.next());
 
-        Order order = new Order(new Date(), status, client);
+        Pedido pedido = new Pedido(new Date(), status, cliente);
 
         System.out.print("Quantos itens para este pedido? ");
         int n = sc.nextInt();
@@ -46,23 +48,23 @@ public class OrderProgram {
             System.out.println("Digite os dados do item #"+ i);
             System.out.print("Nome do produto: ");
             sc.nextLine();
-            String productName = sc.nextLine();
+            String nomeProduto = sc.nextLine();
 
             System.out.print("Preço do produto: ");
-            Double productPrice = sc.nextDouble();
+            Double precoProduto = sc.nextDouble();
 
             System.out.print("Quantidade: ");
-            int quantity = sc.nextInt();
+            int quantidade = sc.nextInt();
 
-            Product product = new Product(productName, productPrice);
+            Produtos produtos = new Produtos(nomeProduto, precoProduto);
 
-            OrderItem orderItem = new OrderItem(quantity, productPrice, product);
+            ItensPedidos itensPedidos = new ItensPedidos(quantidade, precoProduto, produtos);
 
-            order.addItem(orderItem);
+            pedido.addItem(itensPedidos);
         }
 
         System.out.println();
-        System.out.println(order);
+        System.out.println(pedido);
 
         sc.close();
 

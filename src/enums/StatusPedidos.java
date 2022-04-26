@@ -1,6 +1,6 @@
-package model.enums;
+package enums;
 
-public enum OrderStatus {
+public enum StatusPedidos {
 
     PENDING_PAYMENT,
     PROCESSING,
